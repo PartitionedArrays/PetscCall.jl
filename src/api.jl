@@ -542,6 +542,12 @@ Base.unsafe_convert(::Type{Ptr{Cvoid}},v::Mat) = v.ptr
 @wrapper(:MatMPIAIJSetPreallocation,PetscErrorCode,(Mat,PetscInt,Ptr{PetscInt},PetscInt,Ptr{PetscInt}),(B,d_nz,d_nnz,o_nz,o_nnz),"/Mat/MatMPIAIJSetPreallocation.html")
 @wrapper(:MatSetFromOptions,PetscErrorCode,(Mat,),(mat,),"/Mat/MatSetFromOptions.html")
 
+# New
+@wrapper(:MatMPIAIJGetLocalMat,PetscErrorCode,(Mat,MatReuse,Ptr{Mat}), (A,scall,A_local),"Mat/MatMPIAIJGetLocalMat.html")
+@wrapper(:MatGetRowIJ,PetscErrorCode,(Mat, PetscInt,PetscBool,PetscBool,Ptr{PetscInt},Ptr{PetscInt},Ptr{PetscInt},Ptr{PetscBool}), (A,shift,symmetric,inodecompressed,n,ia,ja,done),"Mat/MatGetRowIJ/")
+@wrapper(:MatSeqAIJGetArrayRead, PetscErrorCode,(Mat, Ptr{Ptr{PetscScalar}}), (A, array),"Mat/MatSeqAIJGetArrayRead/")
+
+
 # Matrix products related
 
 """
