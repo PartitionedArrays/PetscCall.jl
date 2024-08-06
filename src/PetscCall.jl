@@ -7,10 +7,10 @@ using SparseArrays
 using SparseMatricesCSR
 using PartitionedArrays
 
-include("/home/ppp23034/MscThesisJopMeijer/PetscCall.jl/src/preferences_head.jl")
-include("/home/ppp23034/MscThesisJopMeijer/PetscCall.jl/src/api.jl")
-include("/home/ppp23034/MscThesisJopMeijer/PetscCall.jl/src/preferences_tail.jl")
-include("/home/ppp23034/MscThesisJopMeijer/PetscCall.jl/src/environment.jl")
-include("/home/ppp23034/MscThesisJopMeijer/PetscCall.jl/src/ksp.jl")
+include("preferences_head.jl")
+include("api.jl")
+include("preferences_tail.jl")
+include("environment.jl")
+include("ksp.jl")
 
 end # module
