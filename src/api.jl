@@ -543,12 +543,16 @@ Base.unsafe_convert(::Type{Ptr{Cvoid}},v::Mat) = v.ptr
 @wrapper(:MatSetFromOptions,PetscErrorCode,(Mat,),(mat,),"/Mat/MatSetFromOptions.html")
 
 # New
-@wrapper(:MatMPIAIJGetLocalMat,PetscErrorCode,(Mat,MatReuse,Ptr{Mat}), (A,scall,A_local),"Mat/MatMPIAIJGetLocalMat.html")
+#include "petscmat.h" 
+# PetscErrorCode MatMPIAIJGetSeqAIJ(Mat A, Mat *Ad, Mat *Ao, const PetscInt *colmap[])
+@wrapper(:MatMPIAIJGetSeqAIJ,PetscErrorCode,(Mat,Ptr{Mat},Ptr{Mat},Ptr{Ptr{PetscInt}}),(A,Ad,Ao,colmap),"Mat/MatMPIAIJGetSeqAIJ.html")
+@wrapper(:MatMPIAIJGetLocalMat,PetscErrorCode,(Mat,MatReuse,Ptr{Mat}),(A,scall,A_local),"Mat/MatMPIAIJGetLocalMat.html")
 @wrapper(:MatGetRowIJ,PetscErrorCode,(Mat,PetscInt,PetscBool,PetscBool,Ptr{PetscInt},Ptr{Ptr{PetscInt}},Ptr{Ptr{PetscInt}},Ptr{PetscBool}),(A,shift,symmetric,inodecompressed,n,ia,ja,done),"Mat/MatGetRowIJ.html")
 @wrapper(:MatRestoreRowIJ,PetscErrorCode,(Mat,PetscInt,PetscBool,PetscBool,Ptr{PetscInt},Ptr{Ptr{PetscInt}},Ptr{Ptr{PetscInt}},Ptr{PetscBool}),(A,shift,symmetric,inodecompressed,n,ia,ja,done),"Mat/MatRestoreRowIJ.html")
-# @wrapper(:MatRestoreRowIJ,PetscErrorCode,(Mat,PetscInt,PetscBool,PetscBool,Ptr{PetscInt},Ptr{PetscInt},Ptr{PetscInt},Ptr{PetscBool}),(A,shift,symmetric,inodecompressed,n,ia,ja,done),"Mat/MatRestoreRowIJ.html")
-@wrapper(:MatSeqAIJGetArrayRead, PetscErrorCode,(Mat, Ptr{Ptr{PetscScalar}}), (A, array),"Mat/MatSeqAIJGetArrayRead.html")
-
+@wrapper(:MatSeqAIJGetArray,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJGetArrayRead.html")
+@wrapper(:MatSeqAIJRestoreArray,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJRestoreArray.html")
+@wrapper(:MatSeqAIJGetArrayRead,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJGetArrayRead.html")
+@wrapper(:MatSeqAIJRestoreArrayRead,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJRestoreArrayRead.html")
 
 # Matrix products related
 
