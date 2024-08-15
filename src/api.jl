@@ -542,6 +542,16 @@ Base.unsafe_convert(::Type{Ptr{Cvoid}},v::Mat) = v.ptr
 @wrapper(:MatMPIAIJSetPreallocation,PetscErrorCode,(Mat,PetscInt,Ptr{PetscInt},PetscInt,Ptr{PetscInt}),(B,d_nz,d_nnz,o_nz,o_nnz),"/Mat/MatMPIAIJSetPreallocation.html")
 @wrapper(:MatSetFromOptions,PetscErrorCode,(Mat,),(mat,),"/Mat/MatSetFromOptions.html")
 
+# New
+@wrapper(:MatMPIAIJGetSeqAIJ,PetscErrorCode,(Mat,Ptr{Mat},Ptr{Mat},Ptr{Ptr{PetscInt}}),(A,Ad,Ao,colmap),"Mat/MatMPIAIJGetSeqAIJ.html")
+@wrapper(:MatMPIAIJGetLocalMat,PetscErrorCode,(Mat,MatReuse,Ptr{Mat}),(A,scall,A_local),"Mat/MatMPIAIJGetLocalMat.html")
+@wrapper(:MatGetRowIJ,PetscErrorCode,(Mat,PetscInt,PetscBool,PetscBool,Ptr{PetscInt},Ptr{Ptr{PetscInt}},Ptr{Ptr{PetscInt}},Ptr{PetscBool}),(A,shift,symmetric,inodecompressed,n,ia,ja,done),"Mat/MatGetRowIJ.html")
+@wrapper(:MatRestoreRowIJ,PetscErrorCode,(Mat,PetscInt,PetscBool,PetscBool,Ptr{PetscInt},Ptr{Ptr{PetscInt}},Ptr{Ptr{PetscInt}},Ptr{PetscBool}),(A,shift,symmetric,inodecompressed,n,ia,ja,done),"Mat/MatRestoreRowIJ.html")
+@wrapper(:MatSeqAIJGetArray,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJGetArrayRead.html")
+@wrapper(:MatSeqAIJRestoreArray,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJRestoreArray.html")
+@wrapper(:MatSeqAIJGetArrayRead,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJGetArrayRead.html")
+@wrapper(:MatSeqAIJRestoreArrayRead,PetscErrorCode,(Mat,Ptr{Ptr{PetscScalar}}),(A,array),"Mat/MatSeqAIJRestoreArrayRead.html")
+
 # Matrix products related
 
 """
