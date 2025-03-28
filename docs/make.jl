@@ -8,7 +8,7 @@ makedocs(;
     sitename="PetscCall.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://fverdugo.github.io/PetscCall.jl",
+        canonical="https://PartitionedArrays.github.io/PetscCall.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -22,6 +22,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/fverdugo/PetscCall.jl",
+    repo="github.com/PartitionedArrays/PetscCall.jl",
     devbranch="main",
 )
